@@ -4,12 +4,11 @@ var dbtools = require('./db.js');
 var Snippet = require('./snippet.js');
 
 app.get('/snippets', function (req, res) {
-  console.log("test" + {});
-  if (Object.is(req.query, {})) {
+  if (JSON.stringify(req.query) == '{}') {
     res.send('GET request to the homepage');
   }
   else {
-    res.send('GET request with query: ' + req.query);
+    res.send('GET request with query: ' + JSON.stringify(req.query));
   }
 });
 
