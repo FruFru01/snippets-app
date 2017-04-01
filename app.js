@@ -31,24 +31,11 @@ app.put('/snippets/:id', function (req, res) {
 });
 
 app.delete('/snippets/:id', function (req, res) {
-  res.send('DELETE request to the id: ' + req.params.id);
+  dbtools.deleteWithId(req.params.id ,function() {
+    res.send('Snippet was successfully deleted');
+  });
 });
 
-
-app.get('/', function (req, res) {
-  var snip = new Snippet("1", "2", "3", "4", "5", "6");
-  console.log(snip.getJson());
-  res.send('Hello World!');
-});
-
-app.get('/db', function (req, res) {
-  res.send('from db: ' + dbtools.testfunction());
-});
-
-app.get('/test', function(req, res) {
-  dbtools.testfunction();
-  res.send('look at console');
-});
 
 app.listen(app.get('port'), function () {
   console.log('Example app listening on port ' + app.get('port'));

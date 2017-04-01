@@ -36,6 +36,17 @@ module.exports = {
     })
   },
 
+  deleteWithId: function(id, callback) {
+    db.none('delete from snippets where id=$1', [id])
+    .then(() => {
+      callback();
+      return true;
+    })
+    .catch(function (error) {
+      return error;
+    })
+  },
+
   testinsert: function() {
     db.none("insert into snippets(name, description, author, language, code) values($1, $2, $3, $4, $5)", ['Hello', 'print a value', 'johnny', 'JavaX', 'System.("Hello World");'])
     .then(() => {
