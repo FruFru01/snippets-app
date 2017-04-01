@@ -5,9 +5,9 @@ var Snippet = require('./snippet.js');
 
 app.get('/snippets', function (req, res) {
   if (JSON.stringify(req.query) == '{}') {
-    var response = dbtools.getAll();
-    console.log('response: ' + response);
-    res.send('or not: ' + JSON.stringify(response));
+    dbtools.getAll(function(data) {
+      res.send(JSON.stringify(data));
+    });
   }
   else {
     res.send('GET request with query: ' + JSON.stringify(req.query));
