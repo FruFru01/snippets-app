@@ -16,8 +16,10 @@ module.exports = {
   },
 
   getAll: function() {
-    db.many('SELECT * FROM snippets')
+    db.any('SELECT * FROM snippets')
     .then(function (data) {
+      console.log('d' + data);
+      console.log(data.value);
       return data.value;
     })
     .catch(function (error) {
