@@ -10,10 +10,10 @@ app.get('/', function (req, res) {
 app.get('/db', function (req, res) {
   db.one('SELECT $1 AS value', 123)
   .then(function (data) {
-    res.send('DATA:', data.value);
+    res.send('DATA:' + data.value);
   })
   .catch(function (error) {
-    res.send('ERROR:', error);
+    res.send('ERROR:' + error);
   })
 });
 
