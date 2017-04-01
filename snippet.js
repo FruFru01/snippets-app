@@ -1,6 +1,5 @@
 module.exports = {
-  class Snippet {
-    constructor (name, description, author, language, code, tags, id = null) {
+  function Snippet (name, description, author, language, code, tags, id = null) {
       this.id = id;
       this.name = name;
       this.description = description;
@@ -10,8 +9,7 @@ module.exports = {
       this.tags = tags;
     }
 
-    get json() {
+  Snippet.prototype.getJson() = function() {
       return JSON.stringify(this);
-    }
   }
 }

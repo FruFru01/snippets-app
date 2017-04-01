@@ -1,7 +1,7 @@
 var express = require('express');
 var app = express();
 var dbtools = require('./db.js');
-var snippets = require('./snippets.js');
+var snippets = require('./snippet.js');
 
 app.get('/', function (req, res) {
   res.send('Hello World!');
