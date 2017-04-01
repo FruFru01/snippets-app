@@ -1,9 +1,11 @@
 var express = require('express');
 var app = express();
 var dbtools = require('./db.js');
-var snippets = require('./snippet.js');
+var Snippet = require('./snippet.js');
 
 app.get('/', function (req, res) {
+  var snip = new Snippet("1", "2", "3", "4", "5", "6");
+  console.log(snip.getJson());
   res.send('Hello World!');
 });
 
