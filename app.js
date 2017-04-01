@@ -5,7 +5,7 @@ var Snippet = require('./snippet.js');
 
 app.get('/snippets', function (req, res) {
   if (JSON.stringify(req.query) == '{}') {
-    res.send('GET request to the homepage');
+    res.send(JSON.stringify(dbtools.getAll()));
   }
   else {
     res.send('GET request with query: ' + JSON.stringify(req.query));

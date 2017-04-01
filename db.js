@@ -13,5 +13,15 @@ module.exports = {
     .catch(function (error) {
       return error;
     })
+  },
+
+  getAll: function() {
+    db.many('SELECT * FROM snippets')
+    .then(function (data) {
+      return data.value;
+    })
+    .catch(function (error) {
+      return error;
+    })
   }
 }
