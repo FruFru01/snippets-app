@@ -25,6 +25,22 @@ module.exports = {
     })
   },
 
+  addSnippet: function(snippet, callback) {
+    db.one('insert into snippets(name, description, author, language, code, tags) values($1, $2, $3, $4, $5, $6) returning id',
+      [snippet.name, snippet.description, snippet.author, snippet.language, snippet.code, snippet.tags])
+      .then(data => {
+        callback(data);
+        return true;
+      })
+      .catch(error => {
+        return error;
+      });
+  },
+
+  getWithAttribute: function(attribute, callback) {
+
+  },
+
   getWithId: function(id, callback) {
     db.one('select * from snippets where id=$1', [id])
     .then(data => {
@@ -45,6 +61,10 @@ module.exports = {
     .catch(function (error) {
       return error;
     })
+  },
+
+  putWithId: function(id, callback) {
+
   },
 
   testinsert: function() {

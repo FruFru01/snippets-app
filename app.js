@@ -2,8 +2,11 @@ var express = require('express');
 var app = express();
 var dbtools = require('./db.js');
 var Snippet = require('./snippet.js');
+var bodyParser = require('body-parser');
 
 app.set('port', (process.env.PORT || 5000));
+app.use(bodyParser.urlencoded({ extended: false }));
+app.use(bodyParser.json());
 
 app.get('/snippets', function (req, res) {
   if (JSON.stringify(req.query) == '{}') {
@@ -17,6 +20,8 @@ app.get('/snippets', function (req, res) {
 });
 
 app.post('/snippets', function (req, res) {
+  console.log(req.body.name);
+  //dbtools.addSnippet()
   res.send('POST request to the homepage');
 });
 
