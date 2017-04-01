@@ -3,6 +3,8 @@ var app = express();
 var dbtools = require('./db.js');
 var Snippet = require('./snippet.js');
 
+app.set('port', (process.env.PORT || 5000));
+
 app.get('/snippets', function (req, res) {
   if (JSON.stringify(req.query) == '{}') {
     dbtools.getAll(function(data) {
@@ -19,7 +21,9 @@ app.post('/snippets', function (req, res) {
 });
 
 app.get('/snippets/:id', function (req, res) {
-  res.send('GET request to the id: ' + req.params.id);
+  dbtools.getWithId(req.params.id ,function(data) {
+    res.send(JSON.stringify(data));
+  });
 });
 
 app.put('/snippets/:id', function (req, res) {
@@ -46,6 +50,6 @@ app.get('/test', function(req, res) {
   res.send('look at console');
 });
 
-app.listen(process.env.PORT || 3000, function () {
-  console.log('Example app listening on port 3000!');
+app.listen(app.get('port'), function () {
+  console.log('Example app listening on port ' + app.get('port'));
 });

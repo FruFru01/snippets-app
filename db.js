@@ -13,16 +13,6 @@ var db = pgp(cn);
 var Snippet = require('./snippet.js');
 
 module.exports = {
-  testfunction: function() {
-    console.log("testfunction");
-    db.one('SELECT $1 AS value', 123)
-    .then(function (data) {
-      return data.value;
-    })
-    .catch(function (error) {
-      return error;
-    })
-  },
 
   getAll: function(callback) {
     db.any('select * from snippets')
@@ -35,7 +25,18 @@ module.exports = {
     })
   },
 
-  insert: function() {
+  getWithId: function(id, callback) {
+    db.one('select * from snippets where id=$1', [id])
+    .then(data => {
+      callback(data);
+      return true;
+    })
+    .catch(function (error) {
+      return error;
+    })
+  },
+
+  testinsert: function() {
     db.none("insert into snippets(name, description, author, language, code) values($1, $2, $3, $4, $5)", ['Hello', 'print a value', 'johnny', 'JavaX', 'System.("Hello World");'])
     .then(() => {
         // success;
