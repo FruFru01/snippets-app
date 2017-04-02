@@ -38,7 +38,15 @@ module.exports = {
   },
 
   getWithAttribute: function(attribute, callback) {
-
+    console.log('key: ' + attribute.key + '; value: ' + attribute.value);
+    db.any('select * from snippets where $1=$2', [attribute.key, attribute.value])
+      .then(data => {
+        callback(data);
+        return true;
+      })
+      .catch(error => {
+        return error;
+      });
   },
 
   getWithId: function(id, callback) {

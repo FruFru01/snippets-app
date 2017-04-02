@@ -15,14 +15,35 @@ app.get('/snippets', function (req, res) {
     });
   }
   else {
-    res.send('GET request with query: ' + JSON.stringify(req.query));
+    if(req.query.id != null) {
+      dbtools.getWithAttribute({'key':'id', 'value':req.query.id}, function(data) {
+        res.send(JSON.stringify(data));
+      });
+      //res.send('GET request with query: ' + req.query.id);
+    } else if (req.query.name != null){
+      res.send('GET request with query: ' + req.query.name);
+    } else if (req.query.description != null){
+      res.send('GET request with query: ' + req.query.description);
+    } else if (req.query.author != null){
+      res.send('GET request with query: ' + req.query.author);
+    } else if (req.query.language != null){
+      res.send('GET request with query: ' + req.query.language);
+    } else if (req.query.code != null){
+      res.send('GET request with query: ' + req.query.code);
+    } else if (req.query.text != null){
+      res.send('GET request with query: ' + req.query.text);
+    } else {
+      res.send('No such Attribute!');
+    }
   }
 });
 
 app.post('/snippets', function (req, res) {
-  console.log(req.body.name);
-  //dbtools.addSnippet()
-  res.send('POST request to the homepage');
+  //ToDo: InputValidation
+  var newSnippet = new Snippet(req.body.name, req.body.description, req.body.author, req.body.language, req.body.code, req.body.tags);
+  dbtools.addSnippet(newSnippet, function(data) {
+    res.send(JSON.stringify(data));
+  });
 });
 
 app.get('/snippets/:id', function (req, res) {
