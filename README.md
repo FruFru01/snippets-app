@@ -1,6 +1,6 @@
 # Snippets-App
 
-Einfache Snippets Node.js Webapp mit REST API.
+Einfache Snippets Webapp basierend auf Express.js mit REST API.
 
 Die Routen der Applikation sind in app.js implementiert. Die Funktionen darin rufen die dazugehörigen Datenbank Funktionen in db.js auf.
 
