@@ -26,7 +26,7 @@ module.exports = {
     })
   },
 
-  addSnippet: function(snippet, callback) {
+  addSnippet: function(snippet, callback, error, res) {
     db.one('insert into snippets(name, description, author, language, code, tags) values($1, $2, $3, $4, $5, $6) returning id',
       [snippet.name, snippet.description, snippet.author, snippet.language, snippet.code, snippet.tags])
       .then(data => {
@@ -34,11 +34,12 @@ module.exports = {
         return true;
       })
       .catch(error => {
+        error(res, 400, "something went wrong");
         return error;
       });
   },
 
-  getWithAttribute: function(snippet, callback) {
+  getWithAttribute: function(snippet, callback, error, res) {
     console.log(snippet.getJson());
     if (snippet.name == null)
       snippet.name = '%';
@@ -50,40 +51,42 @@ module.exports = {
       snippet.language = '%';
     if (snippet.code == null)
       snippet.code = '%';
-    console.log(snippet.getJson());
     db.any('select * from snippets where (($1 IS NULL) OR (ID = $1)) and name like $2 and description like $3 and author like $4 and language like $5 and code like $6 and (($7 IS NULL) OR (tags @> array[$7]))', [snippet.id, snippet.name, snippet.description, snippet.author, snippet.language, snippet.code, snippet.tags])
       .then(data => {
         callback(data);
         return true;
       })
       .catch(error => {
+        error(res, 400, "something went wrong");
         return error;
       });
   },
 
-  getWithId: function(id, callback) {
+  getWithId: function(id, callback, error, res) {
     db.one('select * from snippets where id=$1', [id])
     .then(data => {
       callback(data);
       return true;
     })
     .catch(function (error) {
+      error(res, 400, "something went wrong");
       return error;
     })
   },
 
-  deleteWithId: function(id, callback) {
+  deleteWithId: function(id, callback, error, res) {
     db.none('delete from snippets where id=$1', [id])
     .then(() => {
       callback();
       return true;
     })
     .catch(function (error) {
+      error(res, 400, "something went wrong");
       return error;
     })
   },
 
-  putWithId: function(snippet, callback) {
+  putWithId: function(snippet, callback, error, res) {
     console.log(snippet.getJson());
     db.none('update snippets set name=$1, description=$2, author=$3, language=$4, code=$5, tags=$6 where id=$7', [snippet.name, snippet.description, snippet.author, snippet.language, snippet.code, snippet.tags, snippet.id])
     .then(data => {
@@ -92,17 +95,8 @@ module.exports = {
       return true;
     })
     .catch(function (error) {
+      error(res, 400, "something went wrong");
       return error;
     })
-  },
-
-  testinsert: function() {
-    db.none("insert into snippets(name, description, author, language, code) values($1, $2, $3, $4, $5)", ['Hello', 'print a value', 'johnny', 'JavaX', 'System.("Hello World");'])
-    .then(() => {
-        // success;
-    })
-    .catch(error => {
-        console.log('db error: ' + error);
-    });
   }
 }

@@ -24,7 +24,7 @@ app.get('/snippets', function (req, res) {
     var snippet = new Snippet(req.query.name, req.query.description, req.query.author, req.query.language, req.query.code, req.query.tags, req.query.id);
     dbtools.getWithAttribute(snippet, function(data) {
       res.send(JSON.stringify(data));
-    });
+    }, error, res);
   }
 });
 
@@ -33,26 +33,26 @@ app.post('/snippets', function (req, res) {
   var newSnippet = new Snippet(req.body.name, req.body.description, req.body.author, req.body.language, req.body.code, req.body.tags);
   dbtools.addSnippet(newSnippet, function(data) {
     res.send(JSON.stringify(data));
-  });
+  }, error, res);
 });
 
 app.get('/snippets/:id', function (req, res) {
   dbtools.getWithId(req.params.id ,function(data) {
     res.send(JSON.stringify(data));
-  });
+  }, error, res);
 });
 
 app.put('/snippets/:id', function (req, res) {
   var snippet = new Snippet(req.body.name, req.body.description, req.body.author, req.body.language, req.body.code, req.body.tags, req.params.id);
   dbtools.putWithId(snippet, function(data) {
     res.send('Snippet was successfully updated');
-  });
+  }, error, res);
 });
 
 app.delete('/snippets/:id', function (req, res) {
   dbtools.deleteWithId(req.params.id ,function() {
     res.send('Snippet was successfully deleted');
-  });
+  }, error, res);
 });
 
 
