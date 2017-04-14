@@ -39,7 +39,18 @@ module.exports = {
 
   getWithAttribute: function(snippet, callback) {
     console.log(snippet.getJson());
-    db.any('select * from snippets where id=$1 and name=$2', [snippet.id, snippet.name])
+    if (snippet.name == null)
+      snippet.name = '%';
+    if (snippet.description == null)
+      snippet.description = '%';
+    if (snippet.author == null)
+      snippet.author = '%';
+    if (snippet.language == null)
+      snippet.language = '%';
+    if (snippet.code == null)
+      snippet.code = '%';
+    console.log(snippet.getJson());
+    db.any('select * from snippets where (($1 IS NULL) OR (ID = $1)) and name like $2 and description like $3 and author like $4 and language like $5 and code like $6 and (($7 IS NULL) OR (tags @> array[$7]))', [snippet.id, snippet.name, snippet.description, snippet.author, snippet.language, snippet.code, snippet.tags])
       .then(data => {
         callback(data);
         return true;
