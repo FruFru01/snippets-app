@@ -8,11 +8,16 @@ app.set('port', (process.env.PORT || 5000));
 app.use(bodyParser.urlencoded({ extended: false }));
 app.use(bodyParser.json());
 
+var error = function(res, code, msg) {
+  res.status(code);
+  res.send(msg);
+};
+
 app.get('/snippets', function (req, res) {
   if (JSON.stringify(req.query) == '{}') {
     dbtools.getAll(function(data) {
       res.send(JSON.stringify(data));
-    });
+    }, error, res);
   }
   else {
     console.log(req.query.name);

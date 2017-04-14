@@ -14,13 +14,14 @@ var Snippet = require('./snippet.js');
 
 module.exports = {
 
-  getAll: function(callback) {
+  getAll: function(callback, error, res) {
     db.any('select * from snippets')
     .then(data => {
       callback(data);
       return true;
     })
     .catch(function (error) {
+      error(res, 400, "something went wrong");
       return error;
     })
   },
