@@ -55,6 +55,11 @@ app.delete('/snippets/:id', function (req, res) {
   }, error, res);
 });
 
+app.get('*', function(req, res) {
+  res.status(404);
+  res.send('You shall not pass!');
+});
+
 
 app.listen(app.get('port'), function () {
   console.log('Example app listening on port ' + app.get('port'));

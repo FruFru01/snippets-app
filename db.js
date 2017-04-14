@@ -40,7 +40,6 @@ module.exports = {
   },
 
   getWithAttribute: function(snippet, callback, error, res) {
-    console.log(snippet.getJson());
     if (snippet.name == null)
       snippet.name = '%';
     if (snippet.description == null)
@@ -116,8 +115,6 @@ module.exports = {
           return error;
         })
      }
-
-
 
     db.one('select * from snippets where id=$1', [snippetOrig.id])
     .then(data => {
