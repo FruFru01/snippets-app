@@ -37,9 +37,9 @@ module.exports = {
       });
   },
 
-  getWithAttribute: function(attribute, callback) {
-    console.log('key: ' + attribute.key + '; value: ' + attribute.value);
-    db.any('select * from snippets where $1=$2', [attribute.key, attribute.value])
+  getWithAttribute: function(snippet, callback) {
+    console.log(snippet.getJson());
+    db.any('select * from snippets where id=$1 and name=$2', [snippet.id, snippet.name])
       .then(data => {
         callback(data);
         return true;
@@ -71,8 +71,17 @@ module.exports = {
     })
   },
 
-  putWithId: function(id, callback) {
-
+  putWithId: function(snippet, callback) {
+    console.log(snippet.getJson());
+    db.none('update snippets set name=$1, description=$2, author=$3, language=$4, code=$5, tags=$6 where id=$7', [snippet.name, snippet.description, snippet.author, snippet.language, snippet.code, snippet.tags, snippet.id])
+    .then(data => {
+      console.log(data);
+      callback();
+      return true;
+    })
+    .catch(function (error) {
+      return error;
+    })
   },
 
   testinsert: function() {

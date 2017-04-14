@@ -15,26 +15,11 @@ app.get('/snippets', function (req, res) {
     });
   }
   else {
-    if(req.query.id != null) {
-      dbtools.getWithAttribute({'key':'id', 'value':req.query.id}, function(data) {
-        res.send(JSON.stringify(data));
-      });
-      //res.send('GET request with query: ' + req.query.id);
-    } else if (req.query.name != null){
-      res.send('GET request with query: ' + req.query.name);
-    } else if (req.query.description != null){
-      res.send('GET request with query: ' + req.query.description);
-    } else if (req.query.author != null){
-      res.send('GET request with query: ' + req.query.author);
-    } else if (req.query.language != null){
-      res.send('GET request with query: ' + req.query.language);
-    } else if (req.query.code != null){
-      res.send('GET request with query: ' + req.query.code);
-    } else if (req.query.text != null){
-      res.send('GET request with query: ' + req.query.text);
-    } else {
-      res.send('No such Attribute!');
-    }
+    console.log(req.query.name);
+    var snippet = new Snippet(req.query.name, req.query.description, req.query.author, req.query.language, req.query.code, req.query.tags, req.query.id);
+    dbtools.getWithAttribute(snippet, function(data) {
+      res.send(JSON.stringify(data));
+    });
   }
 });
 
@@ -53,7 +38,10 @@ app.get('/snippets/:id', function (req, res) {
 });
 
 app.put('/snippets/:id', function (req, res) {
-  res.send('PUT request to the id: ' + req.params.id);
+  var snippet = new Snippet(req.body.name, req.body.description, req.body.author, req.body.language, req.body.code, req.body.tags, req.params.id);
+  dbtools.putWithId(snippet, function(data) {
+    res.send('Snippet was successfully updated');
+  });
 });
 
 app.delete('/snippets/:id', function (req, res) {
