@@ -10,6 +10,10 @@ Als Datenbank wurde Postgres verwendet. Das verwendete Schema ist in db.sql eins
 
 Bei GET mit Attributen kann nur ein tag übergeben werden.
 
+Verwendeter Rest-Client: https://insomnia.rest/
+
+Exportierte Test-Calls in snippetsapp-tests.json.
+
 # GitHub Link
 
 https://github.com/FruFru01/snippets-app
