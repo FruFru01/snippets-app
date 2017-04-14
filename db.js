@@ -40,7 +40,6 @@ module.exports = {
   },
 
   getWithAttribute: function(snippet, callback, error, res) {
-    console.log(snippet.getJson());
     if (snippet.name == null)
       snippet.name = '%';
     if (snippet.description == null)
@@ -87,10 +86,8 @@ module.exports = {
   },
 
   putWithId: function(snippet, callback, error, res) {
-    console.log(snippet.getJson());
     db.none('update snippets set name=$1, description=$2, author=$3, language=$4, code=$5, tags=$6 where id=$7', [snippet.name, snippet.description, snippet.author, snippet.language, snippet.code, snippet.tags, snippet.id])
     .then(data => {
-      console.log(data);
       callback();
       return true;
     })
