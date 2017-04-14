@@ -1,0 +1,177 @@
+{
+	"_type": "export",
+	"__export_format": 3,
+	"__export_date": "2017-04-14T16:17:33.867Z",
+	"__export_source": "insomnia.desktop.app:v5.0.4",
+	"resources": [
+		{
+			"_id": "wrk_059ea285ab8e4ecab8be6ee6d8945532",
+			"parentId": null,
+			"modified": 1492178583291,
+			"created": 1492178583291,
+			"name": "Insomnia",
+			"description": "",
+			"certificates": [],
+			"_type": "workspace"
+		},
+		{
+			"_id": "env_935ecb93f6e54fc0b2c6b9bc4897589d",
+			"parentId": "wrk_059ea285ab8e4ecab8be6ee6d8945532",
+			"modified": 1492182991300,
+			"created": 1492182991300,
+			"name": "Base Environment",
+			"data": {},
+			"_type": "environment"
+		},
+		{
+			"_id": "jar_96bbe041d6e741b8876fe3622390d89b",
+			"parentId": "wrk_059ea285ab8e4ecab8be6ee6d8945532",
+			"modified": 1492186634466,
+			"created": 1492183042805,
+			"name": "Default Jar",
+			"cookies": [],
+			"_type": "cookie_jar"
+		},
+		{
+			"_id": "req_3827f9339ff541af99ff0ac558e2cad7",
+			"parentId": "wrk_059ea285ab8e4ecab8be6ee6d8945532",
+			"modified": 1492183041667,
+			"created": 1492183023189,
+			"url": "https://rhubarb-tart-86874.herokuapp.com/snippets",
+			"name": "get all snippets",
+			"method": "GET",
+			"body": {},
+			"parameters": [],
+			"headers": [],
+			"authentication": {},
+			"metaSortKey": -1492183023189,
+			"settingStoreCookies": true,
+			"settingSendCookies": true,
+			"settingDisableRenderRequestBody": false,
+			"settingEncodeUrl": true,
+			"_type": "request"
+		},
+		{
+			"_id": "req_9e73bc6513554f9eba5f10b4b2755608",
+			"parentId": "wrk_059ea285ab8e4ecab8be6ee6d8945532",
+			"modified": 1492183160615,
+			"created": 1492183058711,
+			"url": "https://rhubarb-tart-86874.herokuapp.com/snippets?id=2&name=Hello",
+			"name": "snippets with matching attribute",
+			"method": "GET",
+			"body": {},
+			"parameters": [],
+			"headers": [],
+			"authentication": {},
+			"metaSortKey": -1492183058711,
+			"settingStoreCookies": true,
+			"settingSendCookies": true,
+			"settingDisableRenderRequestBody": false,
+			"settingEncodeUrl": true,
+			"_type": "request"
+		},
+		{
+			"_id": "req_4fd567f037f54122abe85df4acf71750",
+			"parentId": "wrk_059ea285ab8e4ecab8be6ee6d8945532",
+			"modified": 1492183195165,
+			"created": 1492183177622,
+			"url": "https://rhubarb-tart-86874.herokuapp.com/snippets/1",
+			"name": "get snippet by id",
+			"method": "GET",
+			"body": {},
+			"parameters": [],
+			"headers": [],
+			"authentication": {},
+			"metaSortKey": -1492183177622,
+			"settingStoreCookies": true,
+			"settingSendCookies": true,
+			"settingDisableRenderRequestBody": false,
+			"settingEncodeUrl": true,
+			"_type": "request"
+		},
+		{
+			"_id": "req_371e328a001145a9a3675d3b4ad41af6",
+			"parentId": "wrk_059ea285ab8e4ecab8be6ee6d8945532",
+			"modified": 1492183263089,
+			"created": 1492183226957,
+			"url": "https://rhubarb-tart-86874.herokuapp.com/snippets",
+			"name": "add snippet with post",
+			"method": "POST",
+			"body": {
+				"mimeType": "application/json",
+				"text": "{\"name\":\"Hello World Post test\",\"description\":\"print a String value\",\"author\":\"john\",\"language\":\"Java\",\"code\":\"System.out.println(\\\"Hello World\\\");\",\"tags\":[\"simple\",\"beginner\",\"print\"]}"
+			},
+			"parameters": [],
+			"headers": [
+				{
+					"name": "Content-Type",
+					"value": "application/json",
+					"id": "pair_82c99d42907f4c5ba723ceace570a5b5"
+				}
+			],
+			"authentication": {},
+			"metaSortKey": -1492183226957,
+			"settingStoreCookies": true,
+			"settingSendCookies": true,
+			"settingDisableRenderRequestBody": false,
+			"settingEncodeUrl": true,
+			"_type": "request"
+		},
+		{
+			"_id": "req_b53c03f61c854b55a144fc54d5ee5b31",
+			"parentId": "wrk_059ea285ab8e4ecab8be6ee6d8945532",
+			"modified": 1492183556640,
+			"created": 1492183307798,
+			"url": "https://rhubarb-tart-86874.herokuapp.com/snippets/7",
+			"name": "update existing snippet",
+			"method": "PUT",
+			"body": {
+				"mimeType": "application/json",
+				"text": "{\"name\":\"Hello World PUT test\"}"
+			},
+			"parameters": [],
+			"headers": [
+				{
+					"name": "Content-Type",
+					"value": "application/json",
+					"id": "pair_293806feb8ac45b1869737698c093720"
+				}
+			],
+			"authentication": {},
+			"metaSortKey": -1492183307798,
+			"settingStoreCookies": true,
+			"settingSendCookies": true,
+			"settingDisableRenderRequestBody": false,
+			"settingEncodeUrl": true,
+			"_type": "request"
+		},
+		{
+			"_id": "req_f080669890184c388aae60c154edb023",
+			"parentId": "wrk_059ea285ab8e4ecab8be6ee6d8945532",
+			"modified": 1492183528847,
+			"created": 1492183522763,
+			"url": "https://rhubarb-tart-86874.herokuapp.com/snippets/6",
+			"name": "delete snippet by id",
+			"method": "DELETE",
+			"body": {},
+			"parameters": [],
+			"headers": [],
+			"authentication": {},
+			"metaSortKey": -1492183522763,
+			"settingStoreCookies": true,
+			"settingSendCookies": true,
+			"settingDisableRenderRequestBody": false,
+			"settingEncodeUrl": true,
+			"_type": "request"
+		},
+		{
+			"_id": "env_3e1db24fd26f4f1aa4089ce76c8c252a",
+			"parentId": "env_935ecb93f6e54fc0b2c6b9bc4897589d",
+			"modified": 1492183005631,
+			"created": 1492182996418,
+			"name": "heroku-snippetsapp",
+			"data": {},
+			"_type": "environment"
+		}
+	]
+}
