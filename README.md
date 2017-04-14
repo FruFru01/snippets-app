@@ -6,10 +6,14 @@ Die Routen der Applikation sind in app.js implementiert. Die Funktionen darin ru
 
 Als Datenbank wurde Postgres verwendet. Das verwendete Schema ist in db.sql einsehbar.
 
-# Heroku Link
-
-https://rhubarb-tart-86874.herokuapp.com/
-
 # REST-Calls Notizen
 
 Bei GET mit Attributen kann nur ein tag übergeben werden.
+
+# GitHub Link
+
+https://github.com/FruFru01/snippets-app
+
+# Heroku Link
+
+https://rhubarb-tart-86874.herokuapp.com/
